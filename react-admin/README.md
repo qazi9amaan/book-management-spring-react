@@ -1,17 +1,13 @@
-# Book management System
+# Book management System | ADMIN
 
 This book management system has been build ` react-js``bootstrap ` and `spring-boot`. The application is divided into two modules admin and client.
 
 ## client side
 
-<img src="/ss/1.png"></img>
-<img src="/ss/2.png"></img>
-<img src="/ss/5.png"></img>
-
-## admin side
-
-<img src="/ssa/a1.png"></img>
-<img src="/ss/a3.png"></img>
+<img src="../ss/a1.png"></img>
+<img src="../ss/a2.png"></img>
+<img src="../ss/a3.png"></img>
+<img src="../ss/a4.png"></img>
 
 ## How to run?
 
