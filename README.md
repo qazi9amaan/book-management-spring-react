@@ -10,7 +10,7 @@ This book management system has been build ` react-js``bootstrap ` and `spring-b
 
 ## admin side
 
-<img src="/ssa/a1.png"></img>
+<img src="/ss/a1.png"></img>
 <img src="/ss/a3.png"></img>
 
 ## How to run?
