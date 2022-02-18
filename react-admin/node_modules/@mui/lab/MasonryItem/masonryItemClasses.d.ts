@@ -1,0 +1,8 @@
+export interface MasonryItemClasses {
+    /** Styles applied to the root element. */
+    root: string;
+}
+export declare type MasonryItemClassKey = keyof MasonryItemClasses;
+export declare function getMasonryItemUtilityClass(slot: string): string;
+declare const masonryItemClasses: MasonryItemClasses;
+export default masonryItemClasses;

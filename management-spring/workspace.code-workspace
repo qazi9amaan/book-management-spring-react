@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../react-admin"
+		},
+		{
+			"path": "../react-client"
+		}
+	]
+}

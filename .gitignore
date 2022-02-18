@@ -1,0 +1,48 @@
+/management-spring/src/main/resources/application.properties
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+/react-admin/node_modules
+/react-admin/.pnp
+/react-admin.pnp.js
+
+
+# testing
+/react-admin/coverage
+
+# production
+/react-admin/build
+
+# misc
+/react-admin/.DS_Store
+/react-admin/.env.local
+/react-admin/.env.development.local
+/react-admin/.env.test.local
+/react-admin/.env.production.local
+
+/react-admin/npm-debug.log*
+/react-admin/yarn-debug.log*
+/react-admin/yarn-error.log*
+
+/react-client/node_modules
+
+/react-client/.pnp
+/react-client/.pnp.js
+
+
+# testing
+/react-client/coverage
+
+# production
+/react-client/build
+
+# misc
+/react-client/.DS_Store
+/react-client/.env.local
+/react-client/.env.development.local
+/react-client/.env.test.local
+/react-client/.env.production.local
+
+/react-client/npm-debug.log*
+/react-client/yarn-debug.log*
+/react-client/yarn-error.log*

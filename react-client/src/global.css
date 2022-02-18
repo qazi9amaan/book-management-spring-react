@@ -1,0 +1,51 @@
+.style-hover:hover {
+	padding: 2rem;
+}
+.book-item-hover:hover {
+	padding: 0.6rem 0rem;
+	transform: scale(0.95);
+}
+.book-item-hover,
+.style-hover,
+.hover-btn {
+	transition: all 0.3s ease-in-out;
+}
+.hover-btn:hover {
+	transform: scale(0.97);
+}
+.navbar {
+	padding: 1.1em 0;
+	background: rgb(201 217 216 / 54%) !important;
+	backdrop-filter: blur(89px) !important;
+	border-color: rgb(201 217 216 / 54%) !important;
+}
+body {
+	overflow: hidden;
+}
+.bg-category {
+	backdrop-filter: blur(1px) !important;
+	border-color: rgba(192, 227, 224, 0.283) !important;
+	color: rgb(67, 106, 103);
+}
+.form-search {
+	background: rgb(201 217 216 / 24%) !important;
+	backdrop-filter: blur(89px) !important;
+	border-color: rgb(201 217 216 / 34%) !important;
+	outline: none;
+	border: none;
+	padding: 0.84em 3em;
+	border-radius: 1.5rem;
+	font-size: 1.1rem;
+	color: black;
+	transition: all 0.3s ease-in-out;
+}
+.form-search::placeholder {
+	font-size: 1.1rem;
+	color: rgba(13, 50, 47, 0.24);
+	font-weight: 500;
+}
+.navbar-brand {
+	font-size: 1.7rem;
+	font-color: rgb(37, 60, 58);
+	font-weight: 100;
+}

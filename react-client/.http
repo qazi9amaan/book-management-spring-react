@@ -1,0 +1,73 @@
+
+###
+GET http://localhost:8080/api/books HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/customer HTTP/1.1
+Content-Type: application/json
+
+
+###
+POST http://localhost:8080/api/customer/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "fullName": "John",
+    "phoneNumber": "7889776055"
+
+}
+
+
+###
+GET http://localhost:8080/api/address HTTP/1.1
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/order/change/7/Pendig HTTP/1.1
+Content-Type: application/json
+
+
+
+###
+
+POST http://localhost:8080/api/address/add/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "customerName": "sdsasdasdd",
+    "phoneNumber": "dsa",
+    "pincode": "788977asdas6055",
+    "mstate": "asdasds",
+    "address": "asdads",
+    "customerId": "1"
+}
+
+###
+
+GET  http://localhost:8080/api/order HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/api/order/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "tracking": "sdsasdasdd",
+    "status": "waiting",
+    "statusMsg": "waiting for approval",
+    "orderDate": "21/09/2021",
+    "price": "999.0",
+    "customerId": "1",
+    "addressId": "3",
+    "bookId":[
+        "9","15"
+    ]
+}
+
+###
+GET http://localhost:8080/api/stats HTTP/1.1
+Content-Type: application/json
+

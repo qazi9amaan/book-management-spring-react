@@ -1,0 +1,7 @@
+/// <reference types="react" />
+declare const PickerView: import("@mui/system").StyledComponent<{
+    theme?: import("@mui/material/styles").Theme | undefined;
+    as?: import("react").ElementType<any> | undefined;
+    sx?: import("@mui/system").SxProps<import("@mui/material/styles").Theme> | undefined;
+}, import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>;
+export default PickerView;
