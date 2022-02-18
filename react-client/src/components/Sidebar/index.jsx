@@ -11,7 +11,7 @@ function SidebarItem({ name }) {
 				fontSize: "1.0rem",
 				marginBottom: ".5rem",
 			}}
-			className="col-md-12">
+			className="col">
 			<Link
 				to={`/cat/${name}`}
 				className="list-group-item d-flex justify-content-between align-items-center list-group-item-action py-3 px-4 bg-category fs-6 ">
@@ -39,6 +39,7 @@ function Sidebar() {
 		<aside
 			style={{
 				overflowY: "scroll",
+				paddingBottom: "2rem",
 				height: "89vh",
 				background: "#f9f9f9a6",
 			}}
@@ -49,14 +50,14 @@ function Sidebar() {
 			<p className="w-75 px-4 fs-6 text-muted">
 				A curated list of every book ever written
 			</p>
-			<div className="row px-3 list-group h-100 ">
+			<div className=" px-2  ">
 				<div
 					style={{
 						borderRadius: "2.3rem",
 						fontSize: "1.0rem",
 						marginBottom: ".5rem",
 					}}
-					className="col-md-12">
+					className="">
 					<Link
 						to={`/`}
 						className="list-group-item d-flex justify-content-between align-items-center list-group-item-action py-3 px-4 bg-category fs-6 ">
