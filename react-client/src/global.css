@@ -28,7 +28,7 @@ body {
 	color: rgb(67, 106, 103);
 }
 .form-search {
-	background: rgb(201 217 216 / 24%) !important;
+	background: rgb(201 217 216 / 84%) !important;
 	backdrop-filter: blur(89px) !important;
 	border-color: rgb(201 217 216 / 34%) !important;
 	outline: none;
@@ -46,6 +46,57 @@ body {
 }
 .navbar-brand {
 	font-size: 1.7rem;
-	font-color: rgb(37, 60, 58);
+	color: rgb(37, 60, 58);
 	font-weight: 100;
 }
+
+.product {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-bottom: 1px solid rgba(184, 179, 179, 0.221);
+	padding-bottom: 1.9em;
+	margin-bottom: 2em;
+}
+
+.product .book {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.hover {
+	cursor: pointer;
+}
+.product .book img {
+	height: 6.6rem;
+	border-radius: 0.2rem;
+	width: 5rem;
+	-o-object-fit: cover;
+	object-fit: cover;
+	margin-right: 0.65em;
+}
+
+.product .book .author {
+	margin: 0px;
+	text-transform: uppercase;
+}
+
+.product .book .status {
+	color: #41ac99;
+}
+
+input[type="radio"] {
+	display: none !important;
+}
+
+.rating-star {
+	cursor: pointer;
+}
+/*# sourceMappingURL=global.css.map */

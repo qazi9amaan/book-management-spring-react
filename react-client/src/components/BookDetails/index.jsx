@@ -6,6 +6,7 @@ import {
 	addBooktoCart,
 } from "../../store/slices/userSlice";
 import { TiShoppingCart } from "react-icons/ti";
+import { AiFillStar } from "react-icons/ai";
 
 function BookDetails({ book }) {
 	const dispatch = useDispatch();
@@ -17,6 +18,17 @@ function BookDetails({ book }) {
 
 	const addToCart = () => {
 		dispatch(addBooktoCart(book));
+	};
+
+	const getBookRatings = (book) => {
+		let ratings = 0;
+		if (book.ratings) {
+			ratings = book.ratings.reduce((acc, curr) => {
+				return acc + curr.rating;
+			}, 0);
+			ratings = (ratings / book.ratings.length) % 5;
+		}
+		return ratings || 0;
 	};
 
 	return (
@@ -107,8 +119,17 @@ function BookDetails({ book }) {
 							</small>
 						</div>
 					</div>
+					<div className="d-flex justify-content-start mt-2 align-items-center">
+						<AiFillStar
+							style={{
+								color: "rgb(249, 210, 50)",
+								fontSize: "30px",
+							}}
+						/>
+						{getBookRatings(book)}
+					</div>
 
-					<div className="mt-5 d-flex w-100">
+					<div className="mt-3 d-flex w-100">
 						<button
 							onClick={buyBook}
 							style={{

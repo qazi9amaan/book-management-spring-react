@@ -110,13 +110,14 @@ function UserVerifyComponent({
 							}}
 							maxLength="4"
 							type="text"
+							placeholder="0000"
 							pattern="[0-9]*"
 							class="form-control"
 							onChange={(e) => setinputOtp(e.target.value)}
 							id="exampleInputPassword1"
 						/>
 						<div id="emailHelp" class="form-text">
-							Please provide the otp sent to you.
+							Please provide the (0000) sent to you.
 						</div>
 						{error && (
 							<small class="text-danger" role="alert">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AiFillStar } from "react-icons/ai";
 import BookService from "../../service/BookService";
 import BookDetail from "../BookDetails";
 
@@ -6,6 +7,18 @@ function BookItem({ book, setSelectedBook }) {
 	const handleClick = () => {
 		setSelectedBook(book);
 	};
+
+	const getBookRatings = (book) => {
+		let ratings = 0;
+		if (book.ratings) {
+			ratings = book.ratings.reduce((acc, curr) => {
+				return acc + curr.rating;
+			}, 0);
+			ratings = (ratings / book.ratings.length) % 5;
+		}
+		return ratings || 0;
+	};
+
 	return (
 		<>
 			<div
@@ -26,14 +39,27 @@ function BookItem({ book, setSelectedBook }) {
 						src={book.cover}
 						className=" "
 					/>
-					<div className="py-2 pe-2 ">
-						<h6 className="card-title mb-0">
-							{book.title}
-						</h6>
+					<div className="py-2 pe-2 d-flex justify-content-between align-items-center ">
+						<div className="">
+							<h6 className="card-title mb-0">
+								{book.title}
+							</h6>
+							<small
+								style={{ fontSize: "12px" }}
+								className="text-muted ">
+								{book.author}
+							</small>
+						</div>
 						<small
 							style={{ fontSize: "12px" }}
-							className="text-muted">
-							{book.author}
+							className="text-muted d-flex  me-3">
+							<AiFillStar
+								style={{
+									color: "rgb(249, 210, 50)",
+									fontSize: "18px",
+								}}
+							/>
+							{getBookRatings(book)}
 						</small>
 					</div>
 				</div>

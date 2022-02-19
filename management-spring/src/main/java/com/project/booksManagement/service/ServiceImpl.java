@@ -13,18 +13,20 @@ import com.project.booksManagement.dao.BooksDao;
 import com.project.booksManagement.dao.CategoryDao;
 import com.project.booksManagement.dao.CustomerDao;
 import com.project.booksManagement.dao.OrderDao;
+import com.project.booksManagement.dao.RatingsDao;
 import com.project.booksManagement.model.Address;
 import com.project.booksManagement.model.Admin;
 import com.project.booksManagement.model.BookOrder;
 import com.project.booksManagement.model.Books;
 import com.project.booksManagement.model.Category;
 import com.project.booksManagement.model.Customer;
+import com.project.booksManagement.model.Ratings;
 import com.project.booksManagement.model.StatsHolder;
 
 @Service
 public class ServiceImpl implements AdminService,
 CategoryService,BooksService,CustomerService,AddressService 
-, OrderService{
+, OrderService,RatingService{
 	
 	@Autowired
 	AdminDao admindao;
@@ -44,6 +46,9 @@ CategoryService,BooksService,CustomerService,AddressService
 	
 	@Autowired
 	OrderDao orderDao;
+	
+	@Autowired
+	RatingsDao ratingsDao;
 	
 	
 	@Override
@@ -286,6 +291,39 @@ CategoryService,BooksService,CustomerService,AddressService
 		holder.setOrders(orderDao.count());
 
 		return holder;
+	}
+
+	
+	
+	public void saveRatingToBook(Books book, Ratings ratings) {
+		book.getRatings().add(ratings);
+		booksDao.save(book);
+	}
+	
+	@Override
+	public Ratings addRatings(Ratings rating) {
+		Books book = getBook(Integer.parseInt(rating.getMbid()));
+		ratingsDao.save(rating);
+		saveRatingToBook(book, rating);
+		return rating;
+	}
+
+	@Override
+	public Ratings updteRatings(Ratings rating, Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ratings> viewRatings() {
+		// TODO Auto-generated method stub
+		return ratingsDao.findAll();
+	}
+
+	@Override
+	public Ratings getRatings(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

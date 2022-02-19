@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -42,6 +43,8 @@ public class Books implements Serializable{
 	@Lob
 	String description;
 	
+	@OneToMany(fetch = FetchType.LAZY)
+    Collection<Ratings> ratings;
 	
 	@Transient
 	String categoryName;
@@ -84,6 +87,24 @@ public class Books implements Serializable{
 
 
 	
+	
+
+	public Collection<Ratings> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Collection<Ratings> ratings) {
+		this.ratings = ratings;
+	}
+
+	public Collection<BookOrder> getBookOrderId() {
+		return bookOrderId;
+	}
+
+	public void setBookOrderId(Collection<BookOrder> bookOrderId) {
+		this.bookOrderId = bookOrderId;
+	}
+
 	public Books() {
 		// TODO Auto-generated constructor stub
 	}

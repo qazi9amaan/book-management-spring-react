@@ -58,7 +58,7 @@ const Profile = () => {
 									fontWeight: "500",
 									padding: ".9rem 1.3rem",
 								}}
-								className="alert-success  list-group-item-action mb-2   ">
+								className="  list-group-item-action mb-2   ">
 								<p
 									style={{ opacity: 0.8 }}
 									className="mb-0">
@@ -96,7 +96,7 @@ function LinkComponent({ item }) {
 					fontWeight: "500",
 					padding: ".9rem 1.3rem",
 				}}
-				className="alert-success  list-group-item-action mb-2   ">
+				className="  list-group-item-action mb-2   ">
 				<p style={{ opacity: 0.8 }} className="mb-0">
 					{item.title}
 				</p>

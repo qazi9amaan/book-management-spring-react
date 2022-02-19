@@ -45,3 +45,4 @@ react-client/.env.production.local
 react-client/npm-debug.log*
 react-client/yarn-debug.log*
 react-client/yarn-error.log*
+/.metadata/

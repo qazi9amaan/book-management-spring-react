@@ -6,6 +6,7 @@ This book management system has been build ` react-js``bootstrap ` and `spring-b
 
 <img src="/ss/1.png"></img>
 <img src="/ss/2.png"></img>
+<img src="/ss/ratings.png"></img>
 <img src="/ss/5.png"></img>
 
 ## admin side
