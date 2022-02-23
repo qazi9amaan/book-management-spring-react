@@ -3,7 +3,7 @@ import Input from "./components/Input/Input";
 
 function App() {
 	return (
-		<div className="App">
+		<div data-test="component-app">
 			<h1>Jotto</h1>
 			<Input success={false} secretWord={"aa"} />
 			<GuessWords
