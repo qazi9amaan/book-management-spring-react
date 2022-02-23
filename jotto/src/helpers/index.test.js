@@ -1,19 +1,19 @@
 import { getLetterMatchCount } from "./";
 
-describe("getLetterMatchCount", () => {
+describe("getLetterMatchCount returns correct count", () => {
 	const secretWord = "party";
 
-	it("return correct count when no matching letters", () => {
+	it("when no matching letters", () => {
 		expect(getLetterMatchCount("bones", secretWord)).toBe(
 			0
 		);
 	});
-	it("return correct count when 3 matching letters", () => {
+	it("when 3 matching letters", () => {
 		expect(getLetterMatchCount("parzc", secretWord)).toBe(
 			3
 		);
 	});
-	it("return correct count when dublicate matching letters", () => {
+	it("when dublicate matching letters", () => {
 		expect(getLetterMatchCount("paac", secretWord)).toBe(2);
 	});
 });
