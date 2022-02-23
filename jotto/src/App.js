@@ -1,11 +1,11 @@
 import GuessWords from "./components/GuessWords/GuessWords";
-import Congrats from "./components/Congrats/Congrats";
+import Input from "./components/Input/Input";
 
 function App() {
 	return (
 		<div className="App">
 			<h1>Jotto</h1>
-			<Congrats success={false} />
+			<Input success={false} secretWord={"aa"} />
 			<GuessWords
 				guesses={[
 					{ guessedWord: "train", letterMatchCount: 3 },

@@ -24,6 +24,7 @@ const Input = ({ secretWord, success }) => {
 						onChange={onChangeHandler}
 					/>
 					<input
+						type="submit"
 						data-test="input-button"
 						onClick={onSubmitHandler}
 						value="Submit"
