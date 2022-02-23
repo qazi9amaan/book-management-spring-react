@@ -26,7 +26,6 @@ function App() {
 				<Route>
 					<Route path="/" element={<Home />} />
 					<Route path="/cat/:category" element={<Home />} />
-
 					<Route path="cart" element={<Profilecart />} />
 
 					<Route path="/auth" element={<Authuser />} />

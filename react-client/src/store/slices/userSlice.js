@@ -1,13 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const inituser = JSON.parse(localStorage.getItem("user"));
+// const inituser = JSON.parse(
+// 	window.localStorage.getItem("user")
+// );
+const inituser = false;
 const user = inituser || {
 	cid: "",
 	fullName: "",
 	phoneNumber: "",
 };
 const initialState = {
-	auth: localStorage.getItem("auth") || false,
+	auth: false,
+	// auth: window.localStorage.getItem("auth") || false,
 	user: user,
 	address: {
 		aid: "",

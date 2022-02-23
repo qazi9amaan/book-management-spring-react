@@ -4,7 +4,6 @@ import { TiShoppingCart } from "react-icons/ti";
 import { useSelector } from "react-redux";
 function Navbar() {
 	const user = useSelector((state) => state.user);
-
 	return (
 		<nav class="navbar navbar-expand-lg border-bottom  navbar-light bg-light">
 			<div className="container-fluid">
@@ -13,7 +12,7 @@ function Navbar() {
 						style={{ opactity: ".5" }}
 						className="fs-2 mb-0 ">
 						<span style={{ letterSpacing: "-1px" }}>
-							Diamond{" "}
+							Diamond
 						</span>
 						<small
 							style={{
@@ -56,7 +55,9 @@ function Navbar() {
 										}}
 									/>
 									{user.cart.length > 0 && (
-										<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+										<span
+											id="cart-item-count"
+											class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
 											{user.cart.length}
 											<span class="visually-hidden">
 												unread messages
@@ -72,6 +73,7 @@ function Navbar() {
 									style={{ height: "45px", width: "45px" }}
 									src="https://www.w3schools.com/howto/img_avatar2.png"
 									className="rounded-circle"
+									alt="avatar"
 								/>
 							</Link>
 						</li>
