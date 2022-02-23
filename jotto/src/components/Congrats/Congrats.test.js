@@ -2,12 +2,18 @@ import React from "react";
 import Enzyme, { shallow } from "enzyme";
 import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
 import Congrats from "./Congrats";
-import { findByTestAttr } from "../../tests/testUtils";
+import {
+	findByTestAttr,
+	checkProp,
+} from "../../tests/testUtils";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
+const defaultProps = { success: false };
+
 const setup = (props = {}) => {
-	return shallow(<Congrats {...props} />);
+	const setUpProps = { ...defaultProps, ...props };
+	return shallow(<Congrats {...setUpProps} />);
 };
 
 describe("congrats components test cases", () => {
@@ -36,5 +42,10 @@ describe("congrats components test cases", () => {
 			"congrats-message"
 		);
 		expect(component.text().length).not.toBe(0);
+	});
+
+	it("doesnot throw warning with expected props", async () => {
+		const expectedProps = { success: true };
+		checkProp(Congrats, expectedProps);
 	});
 });
