@@ -30,6 +30,80 @@ const setup = async (state = {}) => {
 	return wrapper;
 };
 
-describe("some words guessed", () => {});
+describe.skip("no words guessed", () => {
+	let wrapper;
+	beforeEach(async () => {
+		wrapper = await setup({
+			secret: "party",
+			success: false,
+			guesses: [],
+		});
+	});
 
-describe("secret word guessed", () => {});
+	it("creates guess word table with 1 row", async () => {
+		const guesses = await findByTestAttr(
+			wrapper,
+			"guess-child"
+		);
+		expect(guesses).toHaveLength(1);
+	});
+});
+
+describe.skip("some words guessed", () => {
+	let wrapper;
+	beforeEach(async () => {
+		wrapper = await setup({
+			secret: "party",
+			success: false,
+			guesses: [
+				{ guessedWord: "agile", letterMatchCount: 1 },
+			],
+		});
+	});
+
+	it("adds 1 row to the table", async () => {
+		const guesses = await findByTestAttr(
+			wrapper,
+			"guess-child"
+		);
+		expect(guesses).toHaveLength(2);
+	});
+});
+
+describe.skip("secret word guessed", () => {
+	let wrapper;
+	beforeEach(async () => {
+		wrapper = await setup({
+			secret: "party",
+			success: true,
+			guesses: [
+				{ guessedWord: "agile", letterMatchCount: 1 },
+				{ guessedWord: "party", letterMatchCount: 4 },
+			],
+		});
+	});
+
+	it("adds 1 row to the table", async () => {
+		const guesses = await findByTestAttr(
+			wrapper,
+			"guess-child"
+		);
+		expect(guesses).toHaveLength(2);
+	});
+
+	it("displays congrats component", async () => {
+		const guesses = await findByTestAttr(
+			wrapper,
+			"component-congrats"
+		);
+		expect(guesses).toBeGreaterThan(0);
+	});
+
+	it("hides the input component", async () => {
+		const inputBox = await findByTestAttr(
+			wrapper,
+			"input-box"
+		);
+		expect(inputBox.exists()).toBeFalsy();
+	});
+});
