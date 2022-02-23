@@ -66,6 +66,24 @@ describe("guess-words components test cases", () => {
 			);
 			expect(component.length).toBe(1);
 		});
+
+		it("renders `guessed words` section", async () => {
+			const guessTable = await findByTestAttr(
+				wrapper,
+				"guess-table"
+			);
+			expect(guessTable.length).toBe(1);
+		});
+
+		it("renders correct number of guessed words", async () => {
+			const guesses = await findByTestAttr(
+				wrapper,
+				"guess-child"
+			);
+			expect(guesses).toHaveLength(
+				defaultProps.guesses.length
+			);
+		});
 	});
 
 	it("doesnot throw any errors with required props", () => {

@@ -9,6 +9,19 @@ const GuessWords = ({ guesses }) => {
 					Guess the words to play the game!
 				</div>
 			)}
+
+			{guesses.length !== 0 && (
+				<div data-test="guess-table">
+					{guesses.map((guess, index) => {
+						return (
+							<div data-test="guess-child" key={index}>
+								{guess.guessedWord}
+								{guess.letterMatchCount}
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 };
