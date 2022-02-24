@@ -12,7 +12,9 @@ const Profileaddress = () => {
 			.then((res) => {
 				setaddresses(res.data);
 			})
-			.catch((err) => {});
+			.catch((err) => {
+				console.log(err);
+			});
 	}, []);
 
 	return (
@@ -26,13 +28,12 @@ const Profileaddress = () => {
 					use them to ship your books.
 				</p>
 				<div className="list-group gy-2 mt-4">
-					{addresses &&
-						addresses.map((address) => (
-							<AddressItem
-								key={address.aid}
-								address={address}
-							/>
-						))}
+					{addresses.map((address) => (
+						<AddressItem
+							key={address.aid}
+							address={address}
+						/>
+					))}
 				</div>
 			</div>
 		</div>

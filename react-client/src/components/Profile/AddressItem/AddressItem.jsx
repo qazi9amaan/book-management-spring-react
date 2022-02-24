@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 function AddressItem({ address }) {
 	return (
 		<button
+			data-test="component-address-item"
 			type="button mt-2"
 			className="list-group-item list-group-item-action rounded-3 p-3"
 			aria-current="true">

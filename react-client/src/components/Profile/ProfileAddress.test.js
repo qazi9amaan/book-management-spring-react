@@ -1,43 +1,74 @@
 import React from "react";
 import { mount } from "enzyme";
-
-import ProfileAddress from "./ProfileAddress";
+import { findByTestAttr } from "../../tests/testUtils";
 import { Provider } from "react-redux";
 import { createTestStore } from "../../store";
-import AddressService from "../../service/AddressService";
-import AddressItem from "./AddressItem/AddressItem";
+import OrderService from "../../service/OrderService";
 import { setUser } from "../../store/slices/userSlice";
+import Profileaddress from "./ProfileAddress";
+import AddressService from "../../service/AddressService";
 import { act } from "react-dom/test-utils";
+import moxios from "moxios";
+import AddressItem from "./AddressItem/AddressItem";
 
 const store = createTestStore();
-const setup = (props = {}) => {
+const setup = () => {
 	return mount(
 		<Provider store={store}>
-			<ProfileAddress />
+			<Profileaddress />
 		</Provider>
 	);
 };
 
-it("should render 0 when nothing", async () => {
-	let wrapper;
-	act(() => {
-		store.dispatch(setUser({ cid: 25 }));
-		wrapper = setup();
+describe("Profile address component test casses", () => {
+	beforeEach(() => {
+		moxios.install();
 	});
-	const component = await wrapper.find(AddressItem);
-	expect(component.length).toBe(0);
-});
+	afterEach(() => {
+		moxios.uninstall();
+	});
 
-it("calls the `getAddressByUser` method", () => {
-	act(() => {
+	it("renders without any error", async () => {
+		const wrapper = setup();
+		const component = await findByTestAttr(
+			wrapper,
+			"component-profile-address"
+		);
+		expect(component.length).toBe(1);
+	});
+
+	describe("when the api returns", () => {
+		it("nothing, should render nothing", async () => {
+			await moxios.wait(() => {
+				const req = moxios.requests.mostRecent();
+				req.respondWith({
+					status: 200,
+					response: [],
+				});
+			});
+			const wrapper = setup();
+			await expect(wrapper.find(AddressItem).exists()).toBe(
+				false
+			);
+		});
+	});
+
+	it("calls the `getAddressByUser` method", async () => {
+		await moxios.wait(() => {
+			const req = moxios.requests.mostRecent();
+			req.respondWith({
+				status: 200,
+				response: "yes",
+			});
+		});
+		store.dispatch(setUser({ cid: 25 }));
 		jest
 			.spyOn(React, "useEffect")
 			.mockImplementation((f) => f());
 		jest.spyOn(AddressService, "getAddressByUser");
-		store.dispatch(setUser({ cid: 25 }));
-		setup();
+		const wrapper = setup();
+		await expect(
+			AddressService.getAddressByUser
+		).toHaveBeenCalledTimes(1);
 	});
-	expect(
-		AddressService.getAddressByUser
-	).toHaveBeenCalledTimes(1);
 });
