@@ -31,17 +31,16 @@ function Sidebar() {
 			</p>
 
 			<div className=" px-2  ">
-				<SidebarItem
-					name="All Books"
-					key="All Books"
-					url="/"
-				/>
-				{categories.map((category) => (
-					<SidebarItem
-						name={category.name}
-						key={category.id}
-					/>
-				))}
+				<div>
+					<SidebarItem name="All Books" url="/" />
+
+					{categories.map((category) => (
+						<SidebarItem
+							name={category.name}
+							key={category.id}
+						/>
+					))}
+				</div>
 			</div>
 		</aside>
 	);
