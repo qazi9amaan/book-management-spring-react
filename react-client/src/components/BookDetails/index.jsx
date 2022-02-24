@@ -7,10 +7,13 @@ import {
 } from "../../store/slices/userSlice";
 import { TiShoppingCart } from "react-icons/ti";
 import { AiFillStar } from "react-icons/ai";
+import { getBookRatings } from "../Books/BookItem";
 
+import PropTypes from "prop-types";
 function BookDetails({ book }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
 	const buyBook = () => {
 		dispatch(addBook(book));
 		navigate("/checkout");
@@ -20,19 +23,9 @@ function BookDetails({ book }) {
 		dispatch(addBooktoCart(book));
 	};
 
-	const getBookRatings = (book) => {
-		let ratings = 0;
-		if (book.ratings) {
-			ratings = book.ratings.reduce((acc, curr) => {
-				return acc + curr.rating;
-			}, 0);
-			ratings = (ratings / book.ratings.length) % 5;
-		}
-		return ratings || 0;
-	};
-
 	return (
 		<div
+			data-test="book-details"
 			style={{
 				borderTopLeftRadius: "1.4rem",
 				borderBottomLeftRadius: "1.4rem",
@@ -56,14 +49,14 @@ function BookDetails({ book }) {
 			<div className="offcanvas-body text-center ">
 				<div className="  my-3 p-3">
 					<img
+						alt=""
 						style={{
 							height: "320px",
 							borderRadius: "1.3rem",
 							transform: "rotate(-0.02turn)",
 						}}
 						className="img-fluid "
-						src={book.cover}
-						alt="Card image cap"></img>
+						src={book.cover}></img>
 				</div>
 				<h3 className="mt-3 fs-3">{book.title}</h3>
 
@@ -166,5 +159,9 @@ function BookDetails({ book }) {
 		</div>
 	);
 }
+
+BookDetails.propTypes = {
+	book: PropTypes.object.isRequired,
+};
 
 export default BookDetails;

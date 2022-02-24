@@ -7,7 +7,7 @@ export const getBookRatings = (book) => {
 		ratings = book.ratings.reduce((acc, curr) => {
 			return acc + curr.rating;
 		}, 0);
-		ratings = (ratings / book.ratings.length) % 5;
+		ratings = ratings / book.ratings.length;
 	}
 	return ratings || 0;
 };
