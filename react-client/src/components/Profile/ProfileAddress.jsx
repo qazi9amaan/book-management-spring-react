@@ -4,11 +4,9 @@ import AddressService from "../../service/AddressService";
 
 const Profileaddress = () => {
 	const user = useSelector((state) => state.user.user);
-
 	const [addresses, setaddresses] = useState([]);
 
 	useEffect(() => {
-		console.log(user);
 		AddressService.getAddressByUser(user.cid).then(
 			(res) => {
 				setaddresses(res.data);
@@ -17,14 +15,16 @@ const Profileaddress = () => {
 	}, []);
 
 	return (
-		<div className=" container ">
+		<div
+			data-test="component-profile-address"
+			className=" container ">
 			<div>
 				<h4>Saved address</h4>
 				<p>
 					The following addresses are saved for you. You can
 					use them to ship your books.
 				</p>
-				<div class="list-group gy-2 mt-4">
+				<div className="list-group gy-2 mt-4">
 					{addresses.map((address) => (
 						<AddressItem address={address} />
 					))}
@@ -42,9 +42,9 @@ function AddressItem({ nextStep, address }) {
 				nextStep(address);
 			}}
 			type="button mt-2"
-			class="list-group-item list-group-item-action rounded-3 p-3"
+			className="list-group-item list-group-item-action rounded-3 p-3"
 			aria-current="true">
-			<div class="d-flex w-100 justify-content-between align-items-center">
+			<div className="d-flex w-100 justify-content-between align-items-center">
 				<div className="me-5">
 					<h5 className="my-0">{address.customerName}</h5>
 					<p className="my-0 ">

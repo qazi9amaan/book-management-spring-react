@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createTestStore } from "../../store";
 import Profileorders from "./ProfileOrders";
 import OrderService from "../../service/OrderService";
+import AddressService from "../../service/AddressService";
 
 const setup = () => {
 	const store = createTestStore();
@@ -57,15 +58,15 @@ describe("Profile orders component test casses", () => {
 	// 	});
 	// });
 
-	it("calls the `getAllOrdersFor` method", async () => {
+	it("calls the `getAddressByUser` method", async () => {
 		try {
 			jest
 				.spyOn(React, "useEffect")
 				.mockImplementation((f) => f());
-			jest.spyOn(OrderService, "getAllOrdersFor");
+			jest.spyOn(AddressService, "getAddressByUser");
 			setup();
 			await expect(
-				OrderService.getAllOrdersFor
+				AddressService.getAddressByUser
 			).toHaveBeenCalledTimes(1);
 		} catch (err) {}
 	});

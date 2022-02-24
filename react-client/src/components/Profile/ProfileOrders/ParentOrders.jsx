@@ -25,7 +25,10 @@ const ParentOrders = ({
 				className="overflow-scroll px-3"
 				style={{ height: "80vh" }}>
 				{orders.map((order, index) => (
-					<div key={index} className="product">
+					<div
+						data-test="order-item-component"
+						key={index}
+						className="product">
 						<div className="book ">
 							<img src={order.books[0].cover} />
 							<div>
