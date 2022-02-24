@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import BookService from "../../service/BookService";
 import BookDetails from "../BookDetails";
 import BookItem from "./BookItem";
+import PropTypes from "prop-types";
 
 function Books({ category }) {
 	const [books, setbooks] = useState([]);
 	const [selectedBook, setSelectedBook] = useState({
-		title: "aaaa",
+		title: "",
 	});
 
+	const chooseSelectedBookTitle = (title) => {
+		setSelectedBook(title);
+	};
+
 	useEffect(() => {
-		console.log(category);
 		if (category === "all") {
 			BookService.getAllBooks().then((res) => {
 				setbooks(res.data);
@@ -30,10 +34,10 @@ function Books({ category }) {
 				<BookDetails book={selectedBook} />
 			)}
 
-			<div class="row row-cols-2 row-cols-md-5 mt-4 ms-3 g-2">
+			<div className="row row-cols-2 row-cols-md-5 mt-4 ms-3 g-2">
 				{books.map((book) => (
 					<BookItem
-						setSelectedBook={setSelectedBook}
+						setSelectedBook={chooseSelectedBookTitle}
 						book={book}
 						key={book.bid}
 					/>
@@ -42,5 +46,9 @@ function Books({ category }) {
 		</div>
 	);
 }
+
+Books.propTypes = {
+	category: PropTypes.string.isRequired,
+};
 
 export default Books;

@@ -1,4 +1,4 @@
-import BookDetail from "../BookDetails";
+import PropTypes from "prop-types";
 import { AiFillStar } from "react-icons/ai";
 
 export const getBookRatings = (book) => {
@@ -20,6 +20,7 @@ function BookItem({ book, setSelectedBook }) {
 	return (
 		<>
 			<div
+				data-test="book-item"
 				onClick={handleClick}
 				style={{ cursor: "pointer" }}
 				className="col book-item-hover "
@@ -66,5 +67,10 @@ function BookItem({ book, setSelectedBook }) {
 		</>
 	);
 }
+
+BookItem.propTypes = {
+	book: PropTypes.object.isRequired,
+	setSelectedBook: PropTypes.func.isRequired,
+};
 
 export default BookItem;
