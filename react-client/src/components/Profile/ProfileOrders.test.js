@@ -58,16 +58,16 @@ describe("Profile orders component test casses", () => {
 	// 	});
 	// });
 
-	it("calls the `getAddressByUser` method", async () => {
-		try {
-			jest
-				.spyOn(React, "useEffect")
-				.mockImplementation((f) => f());
-			jest.spyOn(AddressService, "getAddressByUser");
-			setup();
-			await expect(
-				AddressService.getAddressByUser
-			).toHaveBeenCalledTimes(1);
-		} catch (err) {}
-	});
+	// it("calls the `getAllOrdersFor` method", async () => {
+	// 	try {
+	// 		jest
+	// 			.spyOn(React, "useEffect")
+	// 			.mockImplementation((f) => f());
+	// 		jest.spyOn(OrderService, "getAllOrdersFor");
+	// 		setup();
+	// 		await expect(
+	// 			OrderService.getAllOrdersFor
+	// 		).toHaveBeenCalledTimes(1);
+	// 	} catch (err) {}
+	// });
 });
