@@ -2,29 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CategoryService from "../../service/CategoryService";
 import { BiChevronRight } from "react-icons/bi";
-
-function SidebarItem({ name }) {
-	return (
-		<div
-			style={{
-				borderRadius: "2.3rem",
-				fontSize: "1.0rem",
-				marginBottom: ".5rem",
-			}}
-			className="col">
-			<Link
-				to={`/cat/${name}`}
-				className="list-group-item d-flex justify-content-between align-items-center list-group-item-action py-3 px-4 bg-category fs-6 ">
-				{name}
-				<span>
-					<BiChevronRight
-						style={{ fontSize: "23px", opacity: 0.6 }}
-					/>
-				</span>
-			</Link>
-		</div>
-	);
-}
+import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
 	const [categories, setcategories] = useState([]);
@@ -37,6 +15,7 @@ function Sidebar() {
 
 	return (
 		<aside
+			data-test="component-side-bar"
 			style={{
 				overflowY: "scroll",
 				paddingBottom: "2rem",
@@ -50,25 +29,13 @@ function Sidebar() {
 			<p className="w-75 px-4 fs-6 text-muted">
 				A curated list of every book ever written
 			</p>
+
 			<div className=" px-2  ">
-				<div
-					style={{
-						borderRadius: "2.3rem",
-						fontSize: "1.0rem",
-						marginBottom: ".5rem",
-					}}
-					className="">
-					<Link
-						to={`/`}
-						className="list-group-item d-flex justify-content-between align-items-center list-group-item-action py-3 px-4 bg-category fs-6 ">
-						All Books
-						<span>
-							<BiChevronRight
-								style={{ fontSize: "23px", opacity: 0.6 }}
-							/>
-						</span>
-					</Link>
-				</div>
+				<SidebarItem
+					name="All Books"
+					key="All Books"
+					url="/"
+				/>
 				{categories.map((category) => (
 					<SidebarItem
 						name={category.name}
