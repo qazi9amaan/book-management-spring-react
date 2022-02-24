@@ -25,7 +25,7 @@ const ParentOrders = ({
 				className="overflow-scroll px-3"
 				style={{ height: "80vh" }}>
 				{orders.map((order, index) => (
-					<div className="product">
+					<div key={index} className="product">
 						<div className="book ">
 							<img src={order.books[0].cover} />
 							<div>
@@ -53,6 +53,7 @@ const ParentOrders = ({
 						) : (
 							<div className="other">
 								<button
+									data-test="show-more-books-button"
 									onClick={() => viewAllClickHandler(order)}
 									className=" badge alert-warning p-2  px-3 btn btn-warning rounded-pill badge-pill">
 									view {order.books.length} other books
