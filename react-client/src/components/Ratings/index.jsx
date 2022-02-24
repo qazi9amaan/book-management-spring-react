@@ -3,8 +3,11 @@ import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import RatingService from "../../service/RatingService";
+import PropTypes from "prop-types";
+
 const RatingComponent = ({ book }) => {
 	const user = useSelector((state) => state.user.user);
+
 	const filterRatings = (book) => {
 		const active = book.ratings != null ? true : false;
 		let rating = 0;
@@ -20,9 +23,7 @@ const RatingComponent = ({ book }) => {
 			active: active && rating != 0,
 		};
 	};
-
 	const { rr, active } = filterRatings(book);
-	console.log(active);
 
 	const [ratings, setratings] = useState(rr);
 	const [hover, sethover] = useState(0);
@@ -40,21 +41,20 @@ const RatingComponent = ({ book }) => {
 				mcid: user.cid,
 				rating: e.target.value,
 			};
-			RatingService.addRating(data).then((res) => {
-				console.log(res);
-			});
+			RatingService.addRating(data).then((res) => {});
 			setClicked(false);
 		}
 	};
 
 	return (
-		<div>
+		<div data-test="component-ratings">
 			{new Array(5).fill(0).map((_, i) => (
-				<span>
+				<span key={i}>
 					<label>
 						{!active && (
 							<input
-								enabled={hovering}
+								data-test="component-ratings-input"
+								disabled={!hovering}
 								type="radio"
 								name="rating"
 								value={i + 1}
@@ -79,6 +79,13 @@ const RatingComponent = ({ book }) => {
 			))}
 		</div>
 	);
+};
+
+RatingComponent.propTypes = {
+	book: PropTypes.shape({
+		ratings: PropTypes.array.isRequired,
+		bid: PropTypes.number.isRequired,
+	}).isRequired,
 };
 
 export default RatingComponent;
