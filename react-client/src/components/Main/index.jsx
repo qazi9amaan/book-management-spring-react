@@ -14,7 +14,7 @@ function Main() {
 			}}
 			className="col-md-9   ">
 			<CategoryCrumb category={category} />
-			{/* large book advertisement */}
+
 			<Books category={category ? category : "all"} />
 		</main>
 	);

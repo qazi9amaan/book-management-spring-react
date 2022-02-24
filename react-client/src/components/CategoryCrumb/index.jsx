@@ -1,5 +1,6 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import PropTypes from "prop-types";
 function CategoryCrumb({ category }) {
 	return (
 		<nav
@@ -20,5 +21,9 @@ function CategoryCrumb({ category }) {
 		</nav>
 	);
 }
+
+CategoryCrumb.propTypes = {
+	category: PropTypes.string,
+};
 
 export default CategoryCrumb;
