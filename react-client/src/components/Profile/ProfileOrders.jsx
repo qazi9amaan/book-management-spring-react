@@ -12,10 +12,12 @@ const Profileorders = () => {
 	const [childBooks, setChildBooks] = useState([]);
 
 	useEffect(() => {
-		OrderService.getAllOrdersFor(user.cid).then((res) => {
-			console.log(res.data);
-			setOrders(res.data);
-		});
+		OrderService.getAllOrdersFor(user.cid)
+			.then((res) => {
+				console.log(res.data);
+				setOrders(res.data);
+			})
+			.catch((e) => {});
 	}, []);
 
 	return !childView ? (

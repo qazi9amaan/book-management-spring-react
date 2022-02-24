@@ -6,9 +6,10 @@ import { createTestStore } from "../../store";
 import Profileorders from "./ProfileOrders";
 import OrderService from "../../service/OrderService";
 import AddressService from "../../service/AddressService";
+import { setUser } from "../../store/slices/userSlice";
 
+const store = createTestStore();
 const setup = () => {
-	const store = createTestStore();
 	return mount(
 		<Provider store={store}>
 			<Profileorders />
@@ -58,16 +59,17 @@ describe("Profile orders component test casses", () => {
 	// 	});
 	// });
 
-	// it("calls the `getAllOrdersFor` method", async () => {
-	// 	try {
-	// 		jest
-	// 			.spyOn(React, "useEffect")
-	// 			.mockImplementation((f) => f());
-	// 		jest.spyOn(OrderService, "getAllOrdersFor");
-	// 		setup();
-	// 		await expect(
-	// 			OrderService.getAllOrdersFor
-	// 		).toHaveBeenCalledTimes(1);
-	// 	} catch (err) {}
-	// });
+	it("calls the `getAllOrdersFor` method", async () => {
+		try {
+			store.dispatch(setUser({ cid: 25 }));
+			jest
+				.spyOn(React, "useEffect")
+				.mockImplementation((f) => f());
+			jest.spyOn(OrderService, "getAllOrdersFor");
+			setup();
+			await expect(
+				OrderService.getAllOrdersFor
+			).toHaveBeenCalledTimes(1);
+		} catch (err) {}
+	});
 });
