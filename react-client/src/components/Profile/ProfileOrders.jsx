@@ -19,16 +19,20 @@ const Profileorders = () => {
 	}, []);
 
 	return !childView ? (
-		<ParentOrders
-			orders={orders}
-			setchildView={setchildView}
-			setChildBooks={setChildBooks}
-		/>
+		<div data-test="component-profile-order">
+			<ParentOrders
+				orders={orders}
+				setchildView={setchildView}
+				setChildBooks={setChildBooks}
+			/>
+		</div>
 	) : (
-		<ChildOrders
-			setchildView={setchildView}
-			orders={childBooks}
-		/>
+		<div data-test="component-profile-order">
+			<ChildOrders
+				setchildView={setchildView}
+				orders={childBooks}
+			/>
+		</div>
 	);
 };
 

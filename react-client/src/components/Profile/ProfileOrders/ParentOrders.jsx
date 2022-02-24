@@ -1,5 +1,6 @@
 import React from "react";
 import RatingComponent from "../../Ratings";
+import PropTypes from "prop-types";
 
 const ParentOrders = ({
 	orders,
@@ -18,8 +19,8 @@ const ParentOrders = ({
 	};
 	return (
 		<div
-			className=" container "
-			data-test="component-profile-order">
+			data-test="component-profile-order-parent"
+			className=" container ">
 			<div
 				className="overflow-scroll px-3"
 				style={{ height: "80vh" }}>
@@ -63,5 +64,11 @@ const ParentOrders = ({
 			</div>
 		</div>
 	);
+};
+
+ParentOrders.propType = {
+	orders: PropTypes.array.isRequired,
+	setchildView: PropTypes.func.isRequired,
+	setChildBooks: PropTypes.func.isRequired,
 };
 export default ParentOrders;

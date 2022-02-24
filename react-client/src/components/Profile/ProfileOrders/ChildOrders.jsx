@@ -1,12 +1,20 @@
-import React from "react";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+	AiOutlineArrowLeft,
+	AiFillFastForward,
+} from "react-icons/ai";
+import { Link } from "react-router-dom";
 import RatingComponent from "../../Ratings";
 
 const ChildOrders = ({ orders, setchildView }) => {
+	const getBookName = (books) => {
+		return books.length == 1
+			? books[0].title
+			: `${books[0].title} + ${books.length} more `;
+	};
 	return (
-		<div
-			data-test="component-profile-order"
-			className=" container ">
+		<div className=" container ">
 			<div
 				className="overflow-scroll px-3"
 				style={{ height: "80vh" }}>
