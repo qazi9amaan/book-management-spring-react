@@ -56,12 +56,9 @@ function Navbar() {
 									/>
 									{user.cart.length > 0 && (
 										<span
-											id="cart-item-count"
+											data-test="cart-item-count"
 											className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
 											{user.cart.length}
-											<span className="visually-hidden">
-												unread messages
-											</span>
 										</span>
 									)}
 								</div>
