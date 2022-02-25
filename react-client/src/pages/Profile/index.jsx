@@ -34,7 +34,7 @@ const Profile = () => {
 		navigate("/");
 	};
 	return (
-		<>
+		<div data-test="component-profile">
 			<Navbar />
 			<div className="container  ">
 				<div className="row mt-5  align-items-start">
@@ -54,7 +54,7 @@ const Profile = () => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
