@@ -8,6 +8,8 @@ import {
 	removeBook,
 } from "../../store/slices/userSlice";
 import Navbar from "../Navbar";
+import { getTotalPrice } from "../../pages/Checkout/Steps/Payment";
+import ItemChild from "./CartItem/CartItemChild";
 
 const Profilecart = () => {
 	const navigate = useNavigate();
@@ -19,21 +21,17 @@ const Profilecart = () => {
 		text: "Place Order",
 	});
 
-	const getTotalPrice = (books) => {
-		let total = 0;
-		books.forEach((book) => {
-			total += book.price;
-		});
-		return total;
-	};
-
 	const placeOrder = () => {
+		setBtn({
+			disabled: true,
+			text: "Placing Order",
+		});
 		dispatch(addtoBuy());
 		navigate("/checkout");
 	};
 
 	return (
-		<div>
+		<div data-test="component-profilecart">
 			<Navbar />
 			<div className="container w-75 ">
 				<div className="p-3 mt-2 ">
@@ -46,7 +44,7 @@ const Profilecart = () => {
 					style={{ maxHeight: "21rem" }}
 					className=" overflow-scroll">
 					{userState.cart.map((book) => (
-						<ItemChild book={book} />
+						<ItemChild book={book} key={book.bid} />
 					))}
 				</div>
 				{userState.cart.length > 0 ? (
@@ -80,52 +78,5 @@ const Profilecart = () => {
 		</div>
 	);
 };
-
-function ItemChild({ book }) {
-	const dispatch = useDispatch();
-
-	const removeCart = (book) => {
-		dispatch(removeBook(book));
-	};
-	return (
-		<div className="d-flex justify-content-between align-items-center">
-			<div class="d-flex justify-content-between align-items-center mb-2 pb-2 p-4 border-bottom ">
-				<div
-					style={{
-						width: "60%",
-					}}
-					className="d-flex">
-					<img
-						src={book.cover}
-						style={{ height: "4.6rem" }}
-					/>
-					<div className="ms-2">
-						<h6 className="pb-0 mb-0">{book.title}</h6>
-						<p
-							style={{
-								maxLines: "1",
-							}}>
-							<small>
-								{book.description.substring(0, 100)}
-							</small>
-						</p>
-					</div>
-				</div>
-				<h4>1</h4>
-				<h4>₹{book.price}</h4>
-			</div>
-			<MdOutlineRemoveCircleOutline
-				onClick={() => {
-					removeCart(book);
-				}}
-				style={{
-					fontSize: "2.6rem",
-					opacity: 0.7,
-					cursor: "pointer",
-				}}
-			/>
-		</div>
-	);
-}
 
 export default Profilecart;
