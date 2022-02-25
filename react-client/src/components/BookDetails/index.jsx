@@ -31,21 +31,9 @@ function BookDetails({ book }) {
 				borderBottomLeftRadius: "1.4rem",
 			}}
 			className="offcanvas ps-2  offcanvas-end"
-			tabindex="-1"
+			tabIndex="-1"
 			id="offcanvasExample"
 			aria-labelledby="offcanvasExampleLabel">
-			{/* <div className="offcanvas-header">
-				<h5
-					className="offcanvas-title text-capitalize"
-					id="offcanvasExampleLabel">
-					{book.title}
-				</h5>
-				<button
-					type="button"
-					className="btn-close text-reset"
-					data-bs-dismiss="offcanvas"
-					aria-label="Close"></button>
-			</div> */}
 			<div className="offcanvas-body text-center ">
 				<div className="  my-3 p-3">
 					<img
@@ -124,6 +112,7 @@ function BookDetails({ book }) {
 
 					<div className="mt-3 d-flex w-100">
 						<button
+							data-test="book-buyBook"
 							onClick={buyBook}
 							style={{
 								borderRadius: "1rem",
@@ -136,6 +125,7 @@ function BookDetails({ book }) {
 							Buy Now at ₹{book.price}
 						</button>
 						<div
+							data-test="book-addToCart"
 							data-bs-dismiss="offcanvas"
 							onClick={addToCart}
 							style={{

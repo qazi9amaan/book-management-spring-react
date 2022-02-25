@@ -8,6 +8,10 @@ import BookDetails from ".";
 import { Provider } from "react-redux";
 import { createTestStore } from "../../store";
 import { BrowserRouter } from "react-router-dom";
+import {
+	addBook,
+	addBooktoCart,
+} from "../../store/slices/userSlice";
 
 const defaultProps = {
 	book: {
@@ -15,7 +19,10 @@ const defaultProps = {
 	},
 };
 
+const dispatcherFunction = jest.fn();
 const store = createTestStore();
+store.dispatch = dispatcherFunction;
+
 const setup = (props = {}) => {
 	const setUpProps = { ...defaultProps, ...props };
 	return mount(
@@ -37,17 +44,33 @@ describe("Book item component test casses", () => {
 		expect(component.length).toBe(1);
 	});
 
-	// it("should call `setSelectedBook` on click", async () => {
-	// 	const wrapper = setup();
-	// 	const component = await findByTestAttr(
-	// 		wrapper,
-	// 		"book-item"
-	// 	);
-	// 	component.simulate("click");
-	// 	expect(defaultProps.setSelectedBook).toHaveBeenCalled();
-	// });
+	it("should dispatch `addToCart` on click", async () => {
+		const wrapper = setup();
+		const component = await findByTestAttr(
+			wrapper,
+			"book-addToCart"
+		);
+		component.simulate("click");
+		expect(dispatcherFunction).toHaveBeenCalledWith({
+			type: addBooktoCart.type,
+			payload: defaultProps.book,
+		});
+	});
 
-	// it("doesnot throw warning with expected props", async () => {
-	// 	checkProp(BookDetails, defaultProps);
-	// });
+	it("should dispatch `buyBook` on click", async () => {
+		const wrapper = setup();
+		const component = await findByTestAttr(
+			wrapper,
+			"book-buyBook"
+		);
+		component.simulate("click");
+		expect(dispatcherFunction).toHaveBeenCalledWith({
+			type: addBook.type,
+			payload: defaultProps.book,
+		});
+	});
+
+	it("doesnot throw warning with expected props", async () => {
+		checkProp(BookDetails, defaultProps);
+	});
 });

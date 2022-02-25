@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { clearAuth } from "../../store/slices/userSlice";
+import LinkComponent from "./ProfileSideLink/LinkComponent";
 
 const config = [
 	{
@@ -22,6 +23,7 @@ const config = [
 		url: "/profile",
 	},
 ];
+
 const Profile = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -40,32 +42,12 @@ const Profile = () => {
 						{config.map((item, index) => (
 							<LinkComponent key={index} item={item} />
 						))}
-						<div
-							onClick={logout}
-							style={{
-								cursor: "pointer",
-								textDecoration: "none",
-								borderRadius: "3rem",
-								fontSize: "1.2rem",
-								fontWeight: "500",
-							}}>
-							<div
-								style={{
-									cursor: "pointer",
-									textDecoration: "none",
-									borderRadius: "3rem",
-									fontSize: "1.2rem",
-									fontWeight: "500",
-									padding: ".9rem 1.3rem",
-								}}
-								className="  list-group-item-action mb-2   ">
-								<p
-									style={{ opacity: 0.8 }}
-									className="mb-0">
-									Logout
-								</p>
-							</div>
-						</div>
+						<LinkComponent
+							item={{
+								title: "Logout",
+								clickListener: logout,
+							}}
+						/>
 					</div>
 					<div className="col">
 						<Outlet />
@@ -76,32 +58,4 @@ const Profile = () => {
 	);
 };
 
-function LinkComponent({ item }) {
-	return (
-		<Link
-			to={item.url}
-			style={{
-				cursor: "pointer",
-				textDecoration: "none",
-				borderRadius: "3rem",
-				fontSize: "1.2rem",
-				fontWeight: "500",
-			}}>
-			<div
-				style={{
-					cursor: "pointer",
-					textDecoration: "none",
-					borderRadius: "3rem",
-					fontSize: "1.2rem",
-					fontWeight: "500",
-					padding: ".9rem 1.3rem",
-				}}
-				className="  list-group-item-action mb-2   ">
-				<p style={{ opacity: 0.8 }} className="mb-0">
-					{item.title}
-				</p>
-			</div>
-		</Link>
-	);
-}
 export default Profile;
