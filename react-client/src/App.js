@@ -64,14 +64,4 @@ const ProtectedRoute = () => {
 	);
 };
 
-const NavigateRoute = () => {
-	const auth = useSelector((state) => state.user.auth);
-	const location = useLocation();
-	return auth ? (
-		<Navigate to="/" state={{ from: location }} />
-	) : (
-		<Outlet />
-	);
-};
-
 export default App;

@@ -44,36 +44,42 @@ const Profilecart = () => {
 					style={{ maxHeight: "21rem" }}
 					className=" overflow-scroll">
 					{userState.cart.map((book) => (
-						<ItemChild book={book} key={book.bid} />
+						<ItemChild
+							book={book}
+							key={`bid-${book.bid}`}
+						/>
 					))}
 				</div>
-				{userState.cart.length > 0 ? (
-					<div>
-						<div className="p-3 d-flex justify-content-between  border-bottom mt-3">
-							<h3 className="fx-4 text">Total</h3>
-							<h3
-								style={{ opacity: 0.7 }}
-								className="fx-4 text">
-								₹{getTotalPrice(userState.cart)}
-							</h3>
+				<div data-test="render-pace">
+					{userState.cart.length > 0 ? (
+						<div>
+							<div className="p-3 d-flex justify-content-between  border-bottom mt-3">
+								<h3 className="fx-4 text">Total</h3>
+								<h3
+									style={{ opacity: 0.7 }}
+									className="fx-4 text">
+									₹{getTotalPrice(userState.cart)}
+								</h3>
+							</div>
+							<div className=" d-flex  mt-3 justify-content-between ">
+								<div className="p-2"></div>
+								<button
+									data-test="checkout-btn"
+									className="btn btn-success btn-lg rounded-3"
+									onClick={() => {
+										placeOrder();
+									}}
+									disabled={btn.disabled}>
+									Check out
+								</button>
+							</div>
 						</div>
-						<div className=" d-flex  mt-3 justify-content-between ">
-							<div className="p-2"></div>
-							<button
-								className="btn btn-success btn-lg rounded-3"
-								onClick={() => {
-									placeOrder();
-								}}
-								disabled={btn.disabled}>
-								Check out
-							</button>
-						</div>
-					</div>
-				) : (
-					<h3 className="p-3">
-						Please add some books ....
-					</h3>
-				)}
+					) : (
+						<h3 className="p-3">
+							Please add some books ....
+						</h3>
+					)}
+				</div>
 			</div>
 		</div>
 	);
