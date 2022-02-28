@@ -35,6 +35,7 @@ describe("Profile orders component test casses", () => {
 		);
 		expect(component.length).toBe(1);
 	});
+
 	// describe("when `childview is`", () => {
 	// 	it("false, render parent component", async () => {
 	// 		const wrapper = setup();

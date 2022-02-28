@@ -1,16 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import CategoryService from "../../service/CategoryService";
-import { BiChevronRight } from "react-icons/bi";
 import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
-	const [categories, setcategories] = useState([]);
+	const [sidebarSate, setSideBarState] = React.useState({
+		categories: [],
+		isLoading: true,
+		error: null,
+	});
 
-	useEffect(() => {
-		CategoryService.getAllCategories().then((res) => {
-			setcategories(res.data);
+	const { categories, isLoading, error } = sidebarSate;
+
+	const setCategories = (categories) => {
+		setSideBarState({
+			...sidebarSate,
+			categories,
+			isLoading: false,
 		});
+	};
+
+	React.useEffect(() => {
+		CategoryService.getAllCategories()
+			.then((res) => {
+				setCategories(res.data);
+			})
+			.catch((err) => {
+				console.log("Error occured in Sidebar");
+				setSideBarState({
+					...sidebarSate,
+					error: err.message,
+					isLoading: false,
+				});
+			});
 	}, []);
 
 	return (
@@ -31,16 +52,37 @@ function Sidebar() {
 			</p>
 
 			<div className=" px-2  ">
-				<div>
-					<SidebarItem name="All Books" url="/" />
-
-					{categories.map((category) => (
-						<SidebarItem
-							name={category.name}
-							key={category.id}
-						/>
-					))}
-				</div>
+				{isLoading ? (
+					// isLoading
+					<div
+						data-test="loading-spinner"
+						className="text-center">
+						<div
+							className="spinner-border text-primary"
+							role="status"></div>
+					</div>
+				) : error ? (
+					// showError
+					<div
+						data-test="error-message"
+						className="text-center">
+						<div
+							className="alert alert-danger"
+							role="alert">
+							{error}
+						</div>
+					</div>
+				) : (
+					<div>
+						<SidebarItem name="All Books" url="/" />
+						{categories.map((category) => (
+							<SidebarItem
+								name={category.name}
+								key={category.id}
+							/>
+						))}
+					</div>
+				)}
 			</div>
 		</aside>
 	);

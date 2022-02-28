@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing side nav component when an api call is made when request fails should match the error snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`Testing side nav component when an api call is made when request is success should match the success snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`Testing side nav component when an api call is made while loading should match the default loading snapshot 1`] = `ShallowWrapper {}`;

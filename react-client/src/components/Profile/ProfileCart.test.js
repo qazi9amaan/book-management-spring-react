@@ -69,3 +69,5 @@ it("placeorder should dispatch event in store", async () => {
 	component.simulate("click");
 	expect(dispatchFunction).toHaveBeenCalled();
 });
+
+afterAll(() => {});
