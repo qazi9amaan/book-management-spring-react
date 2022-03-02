@@ -48,6 +48,11 @@ it("should render `Please add some books` when nothing is there", async () => {
 	);
 });
 
+it("should match the default snapshot", () => {
+	const wrapper = setup();
+	expect(wrapper).toMatchSnapshot();
+});
+
 it("should render `check out button` when books are there", async () => {
 	store.dispatch(addBooktoCart(storeState.book));
 	const wrapper = setup();

@@ -91,4 +91,9 @@ describe("Testing books item component", () => {
 	it("doesnot throw warning with expected props", async () => {
 		checkProp(LinkComponent, defaultProps);
 	});
+
+	it("should match the default snapshot", () => {
+		const wrapper = setup();
+		expect(wrapper).toMatchSnapshot();
+	});
 });

@@ -37,4 +37,9 @@ describe("Testing books component", () => {
 		const wrapper = setup();
 		expect(wrapper.find(LinkComponent).length).toBe(4);
 	});
+
+	it("should match the default snapshot", () => {
+		const wrapper = setup();
+		expect(wrapper).toMatchSnapshot();
+	});
 });

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing books item component should match the default snapshot 1`] = `ReactWrapper {}`;
