@@ -44,3 +44,7 @@ it("should render Books with given category", () => {
 	component.props().category = "category";
 	expect(component.props().category).toBe("category");
 });
+it("should match the default snapshot", () => {
+	const wrapper = setup();
+	expect(wrapper).toMatchSnapshot();
+});

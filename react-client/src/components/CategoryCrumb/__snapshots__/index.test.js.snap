@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the default loading snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`should match the default snapshot 1`] = `ShallowWrapper {}`;

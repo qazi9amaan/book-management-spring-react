@@ -70,4 +70,6 @@ it("placeorder should dispatch event in store", async () => {
 	expect(dispatchFunction).toHaveBeenCalled();
 });
 
-afterAll(() => {});
+afterAll(() => {
+	jest.clearAllMocks();
+});

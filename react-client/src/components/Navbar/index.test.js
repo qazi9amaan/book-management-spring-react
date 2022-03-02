@@ -46,3 +46,7 @@ it("when cart is filled renders count", async () => {
 	);
 	expect(component.text()).toBe("1");
 });
+it("should match the deafult snapshot", () => {
+	const wrapper = setup();
+	expect(wrapper).toMatchSnapshot();
+});

@@ -2,11 +2,7 @@ import React from "react";
 import RatingComponent from "../../Ratings";
 import PropTypes from "prop-types";
 
-const ParentOrders = ({
-	orders,
-	setchildView,
-	setChildBooks,
-}) => {
+const ParentOrders = ({ orders, setChildBooks }) => {
 	const getBookName = (books) => {
 		return books.length == 1
 			? books[0].title
@@ -14,8 +10,9 @@ const ParentOrders = ({
 	};
 
 	const viewAllClickHandler = (order) => {
+		console.log("setting orders child");
+		console.log(order);
 		setChildBooks(order);
-		setchildView(true);
 	};
 	return (
 		<div
@@ -72,7 +69,6 @@ const ParentOrders = ({
 
 ParentOrders.propType = {
 	orders: PropTypes.array.isRequired,
-	setchildView: PropTypes.func.isRequired,
 	setChildBooks: PropTypes.func.isRequired,
 };
 export default ParentOrders;

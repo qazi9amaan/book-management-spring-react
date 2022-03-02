@@ -19,6 +19,11 @@ const setup = (props = {}) => {
 };
 
 describe("Book item component test casses", () => {
+	it("should match the  snapshot", () => {
+		const wrapper = setup();
+		expect(wrapper).toMatchSnapshot();
+	});
+
 	it("renders without any error", async () => {
 		const wrapper = setup();
 		const component = await findByTestAttr(

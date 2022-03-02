@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CategoryService from "../../service/CategoryService";
 import SidebarItem from "./SidebarItem";
 

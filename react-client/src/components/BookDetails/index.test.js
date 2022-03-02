@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import {
 	checkProp,
 	findByTestAttr,
@@ -72,5 +72,10 @@ describe("Book item component test casses", () => {
 
 	it("doesnot throw warning with expected props", async () => {
 		checkProp(BookDetails, defaultProps);
+	});
+
+	it("should match the default snapshot", () => {
+		const wrapper = setup();
+		expect(wrapper).toMatchSnapshot();
 	});
 });

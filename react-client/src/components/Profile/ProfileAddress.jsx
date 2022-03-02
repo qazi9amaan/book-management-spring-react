@@ -5,15 +5,30 @@ import AddressItem from "./AddressItem/AddressItem";
 
 const Profileaddress = () => {
 	const user = useSelector((state) => state.user.user);
-	const [addresses, setaddresses] = useState([]);
+	const [componentState, setComponentState] =
+		React.useState({
+			isLoading: true,
+			error: "",
+			addresses: [],
+		});
 
-	useEffect(() => {
+	const { addresses, isLoading, error } = componentState;
+
+	React.useEffect(() => {
 		AddressService.getAddressByUser(user.cid)
 			.then((res) => {
-				setaddresses(res.data);
+				setComponentState({
+					...componentState,
+					isLoading: false,
+					addresses: res.data,
+				});
 			})
 			.catch((err) => {
-				console.log(err);
+				setComponentState({
+					...componentState,
+					isLoading: false,
+					error: err.message,
+				});
 			});
 	}, []);
 
@@ -27,14 +42,30 @@ const Profileaddress = () => {
 					The following addresses are saved for you. You can
 					use them to ship your books.
 				</p>
-				<div className="list-group gy-2 mt-4">
-					{addresses.map((address) => (
-						<AddressItem
-							key={address.aid}
-							address={address}
-						/>
-					))}
-				</div>
+				{isLoading ? (
+					<div
+						data-test="loading-spinner"
+						className="d-flex justify-content-center">
+						<div
+							className="spinner-border"
+							role="status"></div>
+					</div>
+				) : error ? (
+					<div
+						data-test="error-message"
+						className="text-center text-danger">
+						{error}
+					</div>
+				) : (
+					<div className="list-group gy-2 mt-4">
+						{addresses.map((address) => (
+							<AddressItem
+								key={address.aid}
+								address={address}
+							/>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	);

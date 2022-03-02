@@ -23,6 +23,7 @@ describe("Testing side nav component", () => {
 		);
 		expect(component.length).toBe(1);
 	});
+
 	describe("should have the correct navigation when", () => {
 		it("`url` not passed", async () => {
 			const wrapper = setup();
@@ -34,6 +35,7 @@ describe("Testing side nav component", () => {
 				`/cat/${defaultProps.name}`
 			);
 		});
+
 		it("`url`was passed", async () => {
 			const wrapper = setup({
 				url: "/",
@@ -46,7 +48,10 @@ describe("Testing side nav component", () => {
 			expect(component.find(Link).prop("to")).toBe("/");
 		});
 	});
-
+	it("should match the default snapshot", () => {
+		const wrapper = setup();
+		expect(wrapper).toMatchSnapshot();
+	});
 	it("doesnot throw warning with expected props", async () => {
 		checkProp(SidebarItem, defaultProps);
 	});

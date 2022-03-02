@@ -35,4 +35,9 @@ describe("Address item component test casses", () => {
 	it("doesnot throw warning with expected props", async () => {
 		checkProp(AddressItem, defaultProps);
 	});
+
+	it("should match the default snapshot", () => {
+		const wrapper = setup();
+		expect(wrapper).toMatchSnapshot();
+	});
 });

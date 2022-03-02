@@ -8,11 +8,6 @@ import { Link } from "react-router-dom";
 import RatingComponent from "../../Ratings";
 
 const ChildOrders = ({ orders, setchildView }) => {
-	const getBookName = (books) => {
-		return books.length == 1
-			? books[0].title
-			: `${books[0].title} + ${books.length} more `;
-	};
 	return (
 		<div className=" container ">
 			<div
@@ -26,7 +21,7 @@ const ChildOrders = ({ orders, setchildView }) => {
 					{orders.books.length} more
 				</h3>
 				{orders.books.map((book, index) => (
-					<div className="product">
+					<div key={index} className="product">
 						<div className="book ">
 							<img src={book.cover} />
 							<div>

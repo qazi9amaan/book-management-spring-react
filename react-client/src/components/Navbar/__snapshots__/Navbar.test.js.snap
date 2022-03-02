@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the deafult snapshot 1`] = `ReactWrapper {}`;
+
+exports[`should match the error snapshot 1`] = `ReactWrapper {}`;

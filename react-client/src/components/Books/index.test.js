@@ -1,28 +1,46 @@
 import React from "react";
 import { mount } from "enzyme";
-import { findByTestAttr } from "../../tests/testUtils";
-import { Provider } from "react-redux";
-import { createTestStore } from "../../store";
-import Profileaddress from "./ProfileAddress";
-import AddressService from "../../service/AddressService";
 import moxios from "moxios";
-import AddressItem from "./AddressItem/AddressItem";
+import Books from ".";
+import {
+	checkProp,
+	findByTestAttr,
+} from "../../tests/testUtils";
+import BookItem from "./BookItem";
+import BookDetails from "../BookDetails";
+import BookService from "../../service/BookService";
 import { DummyData } from "../../tests/dummyData";
 
-const store = createTestStore();
-const setup = () => {
-	return mount(
-		<Provider store={store}>
-			<Profileaddress />
-		</Provider>
-	);
+const books = DummyData.bookArray;
+
+const initialState = {
+	books: [],
+	selectedBook: {
+		title: null,
+	},
+	error: null,
+	isLoading: true,
 };
 
-describe("Profile address component test casses", () => {
+const defaultProps = {
+	category: "all",
+};
+
+const mockSetCurrentGuess = jest.fn();
+jest.mock("react", () => ({
+	...jest.requireActual("react"),
+	useState: (i) => [initialState, mockSetCurrentGuess],
+}));
+
+const setup = (props = {}) => {
+	const setupProps = { ...defaultProps, ...props };
+	return mount(<Books {...setupProps} />);
+};
+
+describe("Testing books component", () => {
 	beforeAll(() => {
 		moxios.install();
 	});
-
 	afterAll(() => {
 		moxios.uninstall();
 	});
@@ -31,27 +49,33 @@ describe("Profile address component test casses", () => {
 		const wrapper = setup();
 		const component = await findByTestAttr(
 			wrapper,
-			"component-profile-address"
+			"component-books"
 		);
 		expect(component.length).toBe(1);
 	});
 
-	describe("when `getAddressByUser()` is called", () => {
+	it("should not renders `BookDetails` until selected", async () => {
+		const wrapper = setup();
+		expect(wrapper.find(BookDetails).exists()).toBe(false);
+	});
+
+	it("renders without any error with required props", () => {
+		checkProp(Books, defaultProps);
+	});
+
+	describe("when `getAllBooks()` is called", () => {
 		it("return the correct repsonse", async () => {
 			await moxios.wait(() => {
 				const req = moxios.requests.mostRecent();
 				req.respondWith({
 					status: 200,
-					response: "yes",
+					response: books,
 				});
 			});
-			return AddressService.getAddressByUser().then(
-				(respsonse) => {
-					expect(respsonse.data).toEqual("yes");
-				}
-			);
+			return BookService.getAllBooks().then((respsonse) => {
+				expect(respsonse.data).toEqual(books);
+			});
 		});
-
 		//response error has been tested.
 		it("return error response", async () => {
 			await moxios.wait(() => {
@@ -65,44 +89,35 @@ describe("Profile address component test casses", () => {
 				req.reject(errResp);
 			});
 
-			return AddressService.getAddressByUser().catch(
-				(error) => {
-					// eslint-disable-next-line jest/no-conditional-expect
-					expect(error.status).toEqual(500);
-				}
-			);
+			return BookService.getAllBooks().catch((error) => {
+				// eslint-disable-next-line jest/no-conditional-expect
+				expect(error.status).toEqual(500);
+			});
 		});
 	});
 
-	describe("when an api call is made", () => {
-		it("should call fn once only", async () => {
-			jest
-				.spyOn(React, "useEffect")
-				.mockImplementationOnce((f) => f());
-			jest.spyOn(AddressService, "getAddressByUser");
-			setup();
-			expect(
-				AddressService.getAddressByUser
-			).toHaveBeenCalledTimes(1);
-		});
+	it("`all` is passed should call the getAllBooks()", async () => {
+		jest
+			.spyOn(React, "useEffect")
+			.mockImplementationOnce((f) => f());
+		jest.spyOn(BookService, "getAllBooks");
+		setup();
+		expect(BookService.getAllBooks).toHaveBeenCalledTimes(
+			1
+		);
+	});
 
-		// test loading state
-		describe("while loading", () => {
+	describe("when api call is made", () => {
+		describe("should render loading response", () => {
 			let wrapper;
 			beforeEach(() => {
-				const initalValue = {
-					addresses: [],
-					isLoading: true,
-					error: null,
-				};
-
 				React.useState = jest.fn(() => [
-					initalValue,
+					initialState,
 					jest.fn(),
 				]);
+
 				wrapper = setup();
 			});
-
 			it("should render loading", async () => {
 				const component = await findByTestAttr(
 					wrapper,
@@ -121,7 +136,7 @@ describe("Profile address component test casses", () => {
 			let wrapper;
 			beforeEach(() => {
 				const initalValue = {
-					addresses: [],
+					...initialState,
 					isLoading: false,
 					error: "An error has occured",
 				};
@@ -130,7 +145,6 @@ describe("Profile address component test casses", () => {
 					initalValue,
 					jest.fn(),
 				]);
-
 				wrapper = setup();
 			});
 			it("should render error msg", async () => {
@@ -152,9 +166,9 @@ describe("Profile address component test casses", () => {
 			let wrapper;
 			beforeEach(() => {
 				const initalValue = {
-					addresses: [DummyData.address],
+					...initialState,
 					isLoading: false,
-					error: null,
+					books: books,
 				};
 
 				React.useState = jest.fn(() => [
@@ -165,7 +179,7 @@ describe("Profile address component test casses", () => {
 				wrapper = setup();
 			});
 			it("should render items", async () => {
-				expect(wrapper.find(AddressItem).length).toBe(1);
+				expect(wrapper.find(BookItem).length).toBe(1);
 			});
 
 			it("should match the success snapshot", () => {

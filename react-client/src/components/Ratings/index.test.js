@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import RatingComponent from "./";
+import RatingComponent from ".";
 import {
 	checkProp,
 	findByTestAttr,
@@ -145,6 +145,11 @@ describe("Ratings component test casses", () => {
 			);
 			expect(component.exists()).toBe(false);
 		});
+	});
+
+	it("should match the default snapshot", () => {
+		const wrapper = setup(store);
+		expect(wrapper).toMatchSnapshot();
 	});
 
 	it("doesnot throw warning with expected props", async () => {
