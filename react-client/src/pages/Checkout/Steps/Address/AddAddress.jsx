@@ -50,7 +50,7 @@ function AddAddress({ setStep }) {
 		text: "Add address",
 	});
 
-	const [address, setaddress] = useState({
+	const [address, setaddress] = React.useState({
 		customerName: "",
 		phoneNumber: "",
 		address: "",
@@ -104,14 +104,16 @@ function AddAddress({ setStep }) {
 					Please enter your address details. We will use
 					this address to deliver your books.
 				</p>
-				<form class="row g-3 mt-2">
-					<div class="col-6">
-						<label for="inputName" class="form-label">
+				<form className="row g-3 mt-2">
+					<div className="col-6">
+						<label
+							htmlFor="inputName"
+							className="form-label">
 							Name
 						</label>
 						<input
 							type="text"
-							class="form-control"
+							className="form-control"
 							id="inputName"
 							placeholder="Name"
 							name="customerName"
@@ -119,14 +121,16 @@ function AddAddress({ setStep }) {
 							value={address.customerName}
 						/>
 					</div>
-					<div class="col-6">
-						<label for="inputName" class="form-label">
+					<div className="col-6">
+						<label
+							htmlFor="inputName"
+							className="form-label">
 							Phone number
 						</label>
 						<input
 							name="phoneNumber"
 							type="text"
-							class="form-control"
+							className="form-control"
 							id="inputName"
 							placeholder="Phone numebr"
 							onChange={handleChange}
@@ -134,18 +138,22 @@ function AddAddress({ setStep }) {
 						/>
 					</div>
 
-					<div class="col-md-6">
-						<label for="inputCity" class="form-label">
+					<div className="col-md-6">
+						<label
+							htmlFor="inputCity"
+							className="form-label">
 							City
 						</label>
 						<input
 							type="text"
-							class="form-control"
+							className="form-control"
 							id="inputCity"
 						/>
 					</div>
-					<div class="col-md-4">
-						<label for="inputState" class="form-label">
+					<div className="col-md-4">
+						<label
+							htmlFor="inputState"
+							className="form-label">
 							State
 						</label>
 						<select
@@ -158,14 +166,18 @@ function AddAddress({ setStep }) {
 									mstate: e.target.value,
 								});
 							}}
-							class="form-select">
+							className="form-select">
 							{states.map((state) => (
-								<option value={state}>{state}</option>
+								<option key={state} value={state}>
+									{state}
+								</option>
 							))}
 						</select>
 					</div>
-					<div class="col-md-2">
-						<label for="inputZip" class="form-label">
+					<div className="col-md-2">
+						<label
+							htmlFor="inputZip"
+							className="form-label">
 							Zip
 						</label>
 						<input
@@ -173,29 +185,31 @@ function AddAddress({ setStep }) {
 							type="text"
 							name="pincode"
 							value={address.pincode}
-							class="form-control"
+							className="form-control"
 							id="inputZip"
 						/>
 					</div>
 
-					<div class="col-12">
-						<label for="inputAddress" class="form-label">
+					<div className="col-12">
+						<label
+							htmlFor="inputAddress"
+							className="form-label">
 							Address
 						</label>
 						<textarea
 							onChange={handleChange}
 							name="address"
-							class="form-control"
+							className="form-control"
 							placeholder="Address"
 							id="inputAddress"
 							value={address.address}
 							style={{ height: "100px" }}></textarea>
 					</div>
-					<div class="col-12">
+					<div className="col-12">
 						<button
 							disabled={btn.disabled}
 							onClick={onClick}
-							class="btn btn-primary">
+							className="btn btn-primary">
 							{btn.text}
 						</button>
 					</div>

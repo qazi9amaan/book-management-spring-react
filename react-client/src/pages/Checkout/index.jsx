@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import AddressStep from "./Steps/Address";
-import AuthStep from "../AuthUser";
 import PaymentStep from "./Steps/Payment";
 import Navbar from "../../components/Navbar";
 const steps = [
@@ -16,11 +14,11 @@ const steps = [
 ];
 
 function CheckOutWrapper() {
-	const [step, setstep] = useState(0);
+	const [step, setstep] = React.useState(0);
 	const Step = steps[step].component;
 
 	return (
-		<div>
+		<div data-test="check-out-wrapper">
 			<Navbar />
 			<div className="container">
 				<div className="row ">
