@@ -74,12 +74,19 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/api/c/ratings/add HTTP/1.1
+POST http://localhost:8080/api/verify/get-otp HTTP/1.1
 Content-Type: application/json
 
 {
-    "mbid": "10",
-    "mcid": "25",
-    "rating": "3"
+    "phoneNumber":"7889776055"
+}
+###
+POST http://localhost:8080/api/verify/verify-otp HTTP/1.1
+Content-Type: application/json
+
+{
+    "otp":"0638",
+    "phoneNumber":"7889776055",
+    "hash":"f2a050f032dd20f867f363ede1f6f96f38c01afdf1f1a7820910503d9c3dce1d-1646287558061"
 }
 

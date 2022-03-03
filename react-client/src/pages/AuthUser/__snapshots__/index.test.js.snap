@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing the authentication rendering components should render the correct snapshot 1`] = `ReactWrapper {}`;
+
+exports[`testing the authentication rendering components should render the correct snapshot by default 1`] = `ReactWrapper {}`;
+
+exports[`testing the authentication rendering components should render the correct snapshot of otp 1`] = `ReactWrapper {}`;
+
+exports[`testing the authentication rendering ui components should render the correct snapshot by default 1`] = `ReactWrapper {}`;
+
+exports[`testing the authentication rendering ui components should render the correct snapshot of otp 1`] = `ReactWrapper {}`;
