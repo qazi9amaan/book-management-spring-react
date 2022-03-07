@@ -17,6 +17,7 @@
 		"react-router": "^6.2.1",
 		"react-router-dom": "^6.2.1",
 		"react-scripts": "5.0.0",
+		"react-shimmer": "^3.2.0",
 		"react-test-renderer": "^16.0.0",
 		"web-vitals": "^2.1.4"
 	},

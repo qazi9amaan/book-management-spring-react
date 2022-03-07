@@ -100,3 +100,16 @@ input[type="radio"] {
 	cursor: pointer;
 }
 /*# sourceMappingURL=global.css.map */
+.shimmer {
+	object-fit: cover;
+	border-radius: 1.2rem;
+	margin-bottom: 1em;
+	margin-right: 0.3em;
+}
+
+.shimmer-category {
+	object-fit: cover;
+	border-radius: 0.75rem;
+	margin-bottom: 0.6em;
+	padding: 0em 1em;
+}

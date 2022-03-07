@@ -1,4 +1,5 @@
 import React from "react";
+import { Shimmer } from "react-shimmer";
 import CategoryService from "../../service/CategoryService";
 import SidebarItem from "./SidebarItem";
 
@@ -11,18 +12,20 @@ function Sidebar() {
 
 	const { categories, isLoading, error } = sidebarSate;
 
-	const setCategories = (categories) => {
-		setSideBarState({
-			...sidebarSate,
-			categories,
-			isLoading: false,
-		});
-	};
-
 	React.useEffect(() => {
+		const setCategories = (categories) => {
+			setSideBarState({
+				...sidebarSate,
+				categories,
+				isLoading: false,
+			});
+		};
+
 		CategoryService.getAllCategories()
 			.then((res) => {
-				setCategories(res.data);
+				setTimeout(() => {
+					setCategories(res.data);
+				}, 2000);
 			})
 			.catch((err) => {
 				console.log("Error occured in Sidebar");
@@ -32,7 +35,7 @@ function Sidebar() {
 					isLoading: false,
 				});
 			});
-	}, []);
+	}, [sidebarSate]);
 
 	return (
 		<aside
@@ -56,19 +59,22 @@ function Sidebar() {
 					// isLoading
 					<div
 						data-test="loading-spinner"
-						className="text-center">
-						<div
-							className="spinner-border text-primary"
-							role="status"></div>
+						className="text-center px-2">
+						{Array.from(Array(10).keys()).map((item) => (
+							<Shimmer
+								key={item}
+								width={320}
+								height={60}
+								className={"shimmer-category "}
+							/>
+						))}
 					</div>
 				) : error ? (
 					// showError
 					<div
 						data-test="error-message"
 						className="text-center">
-						<div
-							className="alert alert-danger"
-							role="alert">
+						<div className="text-danger" role="alert">
 							{error}
 						</div>
 					</div>

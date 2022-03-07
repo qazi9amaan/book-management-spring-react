@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { MdOutlineRemoveCircleOutline } from "react-icons/md";
-import {
-	addtoBuy,
-	removeBook,
-} from "../../store/slices/userSlice";
+import { addtoBuy } from "../../store/slices/userSlice";
 import Navbar from "../Navbar";
 import { getTotalPrice } from "../../pages/Checkout/Steps/Payment";
 import ItemChild from "./CartItem/CartItemChild";
@@ -41,8 +37,11 @@ const Profilecart = () => {
 					</p>
 				</div>
 				<div
-					style={{ maxHeight: "21rem" }}
-					className=" overflow-scroll">
+					style={{
+						maxHeight: "21rem",
+						overflowY: "auto",
+					}}
+					className="pe-3">
 					{userState.cart.map((book) => (
 						<ItemChild
 							book={book}

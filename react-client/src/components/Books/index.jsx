@@ -3,6 +3,7 @@ import BookService from "../../service/BookService";
 import BookDetails from "../BookDetails";
 import BookItem from "./BookItem";
 import PropTypes from "prop-types";
+import { Shimmer } from "react-shimmer";
 
 function Books({ category }) {
 	const [bookState, setBookState] = React.useState({
@@ -17,14 +18,6 @@ function Books({ category }) {
 	const { error, isLoading, books, selectedBook } =
 		bookState;
 
-	const setbooks = (books) => {
-		setBookState({
-			...bookState,
-			books: books,
-			isLoading: false,
-		});
-	};
-
 	const setSelectedBook = (selectedBook) => {
 		setBookState({
 			...bookState,
@@ -32,22 +25,32 @@ function Books({ category }) {
 		});
 	};
 
-	const setError = (error) => {
-		setBookState({
-			...bookState,
-			isLoading: false,
-			error: error,
-		});
-	};
 	const chooseSelectedBookTitle = (title) => {
 		setSelectedBook(title);
 	};
 
 	React.useEffect(() => {
+		const setbooks = (books) => {
+			setBookState({
+				...bookState,
+				books: books,
+				isLoading: false,
+			});
+		};
+		const setError = (error) => {
+			setBookState({
+				...bookState,
+				isLoading: false,
+				error: error,
+			});
+		};
+
 		if (category === "all") {
 			BookService.getAllBooks()
 				.then((res) => {
-					setbooks(res.data);
+					setTimeout(() => {
+						setbooks(res.data);
+					}, 2000);
 				})
 				.catch((err) => {
 					setError(err.message);
@@ -61,17 +64,22 @@ function Books({ category }) {
 					setError(err.message);
 				});
 		}
-	}, [category]);
+	}, [bookState, category]);
 
 	return (
 		<div data-test="component-books">
 			{isLoading ? (
 				<div
 					data-test="loading-spinner"
-					className="text-center">
-					<div
-						className="spinner-border text-primary"
-						role="status"></div>
+					className="text-center p-2 row">
+					{Array.from(Array(20).keys()).map((item) => (
+						<Shimmer
+							key={item}
+							width={202}
+							height={220}
+							className={"shimmer col-md-3 "}
+						/>
+					))}
 				</div>
 			) : error ? (
 				<div
