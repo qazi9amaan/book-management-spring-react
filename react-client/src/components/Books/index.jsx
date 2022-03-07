@@ -18,6 +18,14 @@ function Books({ category }) {
 	const { error, isLoading, books, selectedBook } =
 		bookState;
 
+	const setbooks = (books) => {
+		setBookState({
+			...bookState,
+			books: books,
+			isLoading: false,
+		});
+	};
+
 	const setSelectedBook = (selectedBook) => {
 		setBookState({
 			...bookState,
@@ -25,26 +33,18 @@ function Books({ category }) {
 		});
 	};
 
+	const setError = (error) => {
+		setBookState({
+			...bookState,
+			isLoading: false,
+			error: error,
+		});
+	};
 	const chooseSelectedBookTitle = (title) => {
 		setSelectedBook(title);
 	};
 
 	React.useEffect(() => {
-		const setbooks = (books) => {
-			setBookState({
-				...bookState,
-				books: books,
-				isLoading: false,
-			});
-		};
-		const setError = (error) => {
-			setBookState({
-				...bookState,
-				isLoading: false,
-				error: error,
-			});
-		};
-
 		if (category === "all") {
 			BookService.getAllBooks()
 				.then((res) => {
@@ -64,7 +64,7 @@ function Books({ category }) {
 					setError(err.message);
 				});
 		}
-	}, [bookState, category]);
+	}, [category]);
 
 	return (
 		<div data-test="component-books">
