@@ -4,7 +4,7 @@ import AuthUser from "./";
 import moxios from "moxios";
 import { findByTestAttr } from "../../tests/testUtils";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+
 import { createTestStore } from "../../store";
 import VerificationService from "../../service/VerificationService";
 import { setLocation } from "../../store/slices/locationSlice";

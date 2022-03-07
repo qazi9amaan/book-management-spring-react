@@ -14,7 +14,6 @@ function Main() {
 			}}
 			className="col-md-9   ">
 			<CategoryCrumb category={category} />
-
 			<Books category={category ? category : "all"} />
 		</main>
 	);
